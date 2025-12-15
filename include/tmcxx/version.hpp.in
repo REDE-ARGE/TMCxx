@@ -1,0 +1,48 @@
+/**
+ * @file version.hpp
+ * @brief Auto-generated version information for TMCxx library
+ */
+#pragma once
+
+#include <cstdint>
+#include <string_view>
+
+namespace tmcxx::version {
+
+/**
+ * @brief Major version number
+ */
+constexpr uint8_t major{@TMCxx_VERSION_MAJOR@};
+
+/**
+ * @brief Minor version number
+ */
+constexpr uint8_t minor{@TMCxx_VERSION_MINOR@};
+
+/**
+ * @brief Patch version number
+ */
+constexpr uint8_t patch{@TMCxx_VERSION_PATCH@};
+
+/**
+ * @brief Full version string (e.g. "0.1.0")
+ */
+constexpr std::string_view string{"@TMCxx_VERSION@"};
+
+/**
+ * @brief Check if current version is at least required version
+ */
+consteval bool is_at_least(uint8_t req_major, uint8_t req_minor, uint8_t req_patch) noexcept
+{
+    if (major != req_major)
+    {
+        return major > req_major;
+    }
+    if (minor != req_minor)
+    {
+        return minor > req_minor;
+    }
+    return patch >= req_patch;
+}
+
+} // namespace tmcxx::version

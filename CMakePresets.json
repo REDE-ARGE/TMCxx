@@ -1,0 +1,274 @@
+{
+    "version": 6,
+    "cmakeMinimumRequired": {
+        "major": 3,
+        "minor": 21,
+        "patch": 0
+    },
+    "configurePresets": [
+        {
+            "name": "base",
+            "hidden": true,
+            "binaryDir": "${sourceDir}/build/${presetName}",
+            "installDir": "${sourceDir}/install/${presetName}",
+            "cacheVariables": {
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+                "TMCXX_BUILD_TESTS": "ON"
+            }
+        },
+        {
+            "name": "debug",
+            "inherits": "base",
+            "displayName": "Debug",
+            "description": "Debug build with tests",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug"
+            }
+        },
+        {
+            "name": "release",
+            "inherits": "base",
+            "displayName": "Release",
+            "description": "Release build with tests",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release"
+            }
+        },
+        {
+            "name": "ci-linux-gcc",
+            "inherits": "release",
+            "displayName": "CI Linux GCC",
+            "description": "Linux CI build with GCC",
+            "condition": {
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": "Linux"
+            },
+            "cacheVariables": {
+                "CMAKE_C_COMPILER": "gcc",
+                "CMAKE_CXX_COMPILER": "g++"
+            }
+        },
+        {
+            "name": "ci-linux-clang",
+            "inherits": "release",
+            "displayName": "CI Linux Clang",
+            "description": "Linux CI build with Clang",
+            "condition": {
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": "Linux"
+            },
+            "cacheVariables": {
+                "CMAKE_C_COMPILER": "clang",
+                "CMAKE_CXX_COMPILER": "clang++"
+            }
+        },
+        {
+            "name": "ci-windows-msvc",
+            "inherits": "release",
+            "displayName": "CI Windows MSVC",
+            "description": "Windows CI build with MSVC + Ninja",
+            "condition": {
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": "Windows"
+            },
+            "generator": "Ninja",
+            "cacheVariables": {
+                "CMAKE_C_COMPILER": "cl",
+                "CMAKE_CXX_COMPILER": "cl"
+            }
+        },
+        {
+            "name": "ci-macos",
+            "inherits": "release",
+            "displayName": "CI macOS",
+            "description": "macOS CI build with AppleClang",
+            "condition": {
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": "Darwin"
+            }
+        },
+        {
+            "name": "dev",
+            "inherits": "debug",
+            "displayName": "Development",
+            "description": "Local development with Ninja",
+            "generator": "Ninja",
+            "cacheVariables": {
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+            }
+        },
+        {
+            "name": "sanitizers",
+            "inherits": "debug",
+            "displayName": "Sanitizers",
+            "description": "Debug build with sanitizers enabled",
+            "condition": {
+                "type": "notEquals",
+                "lhs": "${hostSystemName}",
+                "rhs": "Windows"
+            },
+            "cacheVariables": {
+                "CMAKE_CXX_FLAGS": "-fsanitize=address,undefined -fno-omit-frame-pointer"
+            }
+        },
+        {
+            "name": "arm-gcc",
+            "inherits": "base",
+            "displayName": "ARM GCC (STM32/Embedded)",
+            "description": "Cross-compile for ARM Cortex-M with arm-none-eabi-gcc",
+            "generator": "Ninja",
+            "toolchainFile": "${sourceDir}/cmake/toolchain-arm-gcc.cmake",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release",
+                "TMCXX_BUILD_TESTS": "OFF",
+                "TMCXX_BUILD_EXAMPLES": "OFF"
+            }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "debug",
+            "configurePreset": "debug",
+            "displayName": "Debug Build"
+        },
+        {
+            "name": "release",
+            "configurePreset": "release",
+            "configuration": "Release",
+            "displayName": "Release Build"
+        },
+        {
+            "name": "dev",
+            "configurePreset": "dev",
+            "displayName": "Development Build"
+        },
+        {
+            "name": "ci-linux-gcc",
+            "configurePreset": "ci-linux-gcc",
+            "displayName": "CI Linux GCC Build"
+        },
+        {
+            "name": "ci-linux-clang",
+            "configurePreset": "ci-linux-clang",
+            "displayName": "CI Linux Clang Build"
+        },
+        {
+            "name": "ci-windows-msvc",
+            "configurePreset": "ci-windows-msvc",
+            "configuration": "Release",
+            "displayName": "CI Windows MSVC Build"
+        },
+        {
+            "name": "ci-macos",
+            "configurePreset": "ci-macos",
+            "displayName": "CI macOS Build"
+        },
+        {
+            "name": "arm-gcc",
+            "configurePreset": "arm-gcc",
+            "displayName": "ARM GCC Build (Embedded)"
+        }
+    ],
+    "testPresets": [
+        {
+            "name": "base",
+            "hidden": true,
+            "output": {
+                "outputOnFailure": true,
+                "verbosity": "default"
+            },
+            "execution": {
+                "noTestsAction": "error",
+                "stopOnFailure": false
+            }
+        },
+        {
+            "name": "debug",
+            "configurePreset": "debug",
+            "inherits": "base",
+            "displayName": "Debug Tests"
+        },
+        {
+            "name": "release",
+            "configurePreset": "release",
+            "inherits": "base",
+            "configuration": "Release",
+            "displayName": "Release Tests"
+        },
+        {
+            "name": "dev",
+            "configurePreset": "dev",
+            "inherits": "base",
+            "displayName": "Development Tests"
+        },
+        {
+            "name": "ci-linux-gcc",
+            "configurePreset": "ci-linux-gcc",
+            "inherits": "base",
+            "displayName": "CI Linux GCC Tests"
+        },
+        {
+            "name": "ci-linux-clang",
+            "configurePreset": "ci-linux-clang",
+            "inherits": "base",
+            "displayName": "CI Linux Clang Tests"
+        },
+        {
+            "name": "ci-windows-msvc",
+            "configurePreset": "ci-windows-msvc",
+            "inherits": "base",
+            "configuration": "Release",
+            "displayName": "CI Windows MSVC Tests"
+        },
+        {
+            "name": "ci-macos",
+            "configurePreset": "ci-macos",
+            "inherits": "base",
+            "displayName": "CI macOS Tests"
+        }
+    ],
+    "workflowPresets": [
+        {
+            "name": "dev",
+            "displayName": "Development Workflow",
+            "description": "Configure, build, and test for development",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "dev"
+                },
+                {
+                    "type": "build",
+                    "name": "dev"
+                },
+                {
+                    "type": "test",
+                    "name": "dev"
+                }
+            ]
+        },
+        {
+            "name": "ci",
+            "displayName": "CI Workflow",
+            "description": "Full CI workflow: configure, build, test",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "release"
+                },
+                {
+                    "type": "build",
+                    "name": "release"
+                },
+                {
+                    "type": "test",
+                    "name": "release"
+                }
+            ]
+        }
+    ]
+}

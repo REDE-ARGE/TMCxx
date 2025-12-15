@@ -1,0 +1,62 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Create Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Extract version from tag
+        id: version
+        run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+
+      - name: Extract changelog for this version
+        id: changelog
+        run: |
+          # Extract the changelog section for the current version (supports date suffix)
+          VERSION=${{ steps.version.outputs.VERSION }}
+          CHANGELOG=$(sed -n "/## \[${VERSION}\]/,/## \[/p" CHANGELOG.md | sed '$d' | tail -n +2)
+          echo "CHANGELOG<<EOF" >> $GITHUB_OUTPUT
+          echo "$CHANGELOG" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: TMCxx v${{ steps.version.outputs.VERSION }}
+          body: |
+            ## What's New
+            
+            ${{ steps.changelog.outputs.CHANGELOG }}
+            
+            ## Installation
+            
+            ### CMake FetchContent
+            ```cmake
+            include(FetchContent)
+            FetchContent_Declare(
+                TMCxx
+                GIT_REPOSITORY https://github.com/${{ github.repository }}.git
+                GIT_TAG v${{ steps.version.outputs.VERSION }}
+            )
+            FetchContent_MakeAvailable(TMCxx)
+            
+            target_link_libraries(your_target PRIVATE tmc::xx)
+            ```
+            
+            ### Manual
+            Download and extract, then copy `include/tmcxx` to your project.
+          draft: false
+          prerelease: ${{ contains(steps.version.outputs.VERSION, '-') }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

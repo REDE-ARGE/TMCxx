@@ -1,0 +1,72 @@
+---
+AlignAfterOpenBracket: DontAlign
+AlignOperands: 'true'
+AllowAllArgumentsOnNextLine: 'true'
+AllowAllConstructorInitializersOnNextLine: 'true'
+AllowAllParametersOfDeclarationOnNextLine: 'true'
+AllowShortBlocksOnASingleLine: 'false'
+AllowShortCaseLabelsOnASingleLine: 'false'
+AllowShortFunctionsOnASingleLine: None
+AllowShortIfStatementsOnASingleLine: Never
+AllowShortLambdasOnASingleLine: Empty
+AllowShortLoopsOnASingleLine: 'false'
+AlwaysBreakAfterDefinitionReturnType: None
+AlwaysBreakAfterReturnType: None
+AlwaysBreakBeforeMultilineStrings: 'true'
+AlwaysBreakTemplateDeclarations: 'Yes'
+BinPackArguments: 'false'
+BinPackParameters: 'false'
+BreakBeforeBinaryOperators: None
+BreakBeforeBraces: Custom
+BreakBeforeTernaryOperators: 'true'
+BreakConstructorInitializers: BeforeComma
+ColumnLimit: '120'
+ConstructorInitializerAllOnOneLineOrOnePerLine: 'false'
+ContinuationIndentWidth: '4'
+IndentWidth: '4'
+Cpp11BracedListStyle: 'true'
+DerivePointerAlignment: 'false'
+DisableFormat: 'false'
+FixNamespaceComments: 'true'
+KeepEmptyLinesAtTheStartOfBlocks: 'false'
+Language: Cpp
+NamespaceIndentation: None
+PenaltyReturnTypeOnItsOwnLine: '100000'
+PointerAlignment: Left
+ReflowComments: 'true'
+SpaceAfterCStyleCast: 'false'
+SpaceAfterLogicalNot: 'false'
+SpaceAfterTemplateKeyword: 'false'
+SpaceBeforeAssignmentOperators: 'true'
+SpaceBeforeCpp11BracedList: 'false'
+SpaceBeforeCtorInitializerColon: 'true'
+SpaceBeforeInheritanceColon: 'true'
+SpaceBeforeParens: ControlStatements
+SpaceBeforeRangeBasedForLoopColon: 'false'
+SpaceInEmptyParentheses: 'false'
+SpacesInAngles: 'false'
+SpacesInCStyleCastParentheses: 'false'
+SpacesInContainerLiterals: 'false'
+SpacesInParentheses: 'false'
+SpacesInSquareBrackets: 'false'
+IndentRequiresClause: 'false'
+Standard: Auto
+EmptyLineBeforeAccessModifier: LogicalBlock
+AllowShortEnumsOnASingleLine: false
+QualifierAlignment: Custom
+QualifierOrder: [ 'static', 'inline', 'constexpr', 'const', 'type' ]
+PenaltyBreakBeforeFirstCallParameter: 20
+BraceWrapping:
+  AfterCaseLabel: true
+  AfterControlStatement: true
+  AfterFunction: true
+  AfterObjCDeclaration: true
+  AfterStruct: true
+  AfterUnion: false
+  AfterExternBlock: true
+  BeforeCatch: true
+  BeforeElse: true
+  # BeforeLambdaBody: true
+  BeforeWhile: true
+  IndentBraces: false
+

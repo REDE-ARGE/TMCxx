@@ -1,0 +1,116 @@
+Checks: '
+  readability-identifier*,
+  readability-magic-numbers,
+  bugprone-stringview-nullptr,
+  readability-function-cognitive-complexity,
+  readability-else-after-return,
+  readability-redundant-access-specifiers,
+  readability-make-member-function-const,
+  readability-duplicate-include,
+  readability-implicit-bool-conversion,
+  readability-convert-member-functions-to-static,
+  modernize-use-override,
+  modernize-concat-nested-namespaces,
+  misc-static-assert,
+  misc-include-cleaner,
+  misc-misplaced-const,
+  misc-throw-by-value-catch-by-reference,
+  modernize-avoid-bind,
+  modernize-make-shared,
+  modernize-make-unique,
+  modernize-use-noexcept,
+  modernize-use-nodiscard,
+  modernize-avoid-c-arrays,
+  modernize-use-ranges,
+  modernize-use-auto,
+  modernize-use-using,
+  modernize-use-nullptr,
+  modernize-avoid-bind,
+  modernize-use-scoped-lock,
+  modernize-use-equals-delete,
+  modernize-use-equals-default,
+  performance-faster-string-find,
+  performance-inefficient-string-concatenation,
+  performance-inefficient-vector-operation,
+  performance-no-automatic-move,
+  performance-move-const-arg,
+  performance-unnecessary-value-param,
+  performance-avoid-endl,
+  llvm-include-order,
+  readability-reference-to-constructed-temporary,
+  readability-use-anyofallof,
+  readability-avoid-const-params-in-decls,
+  readability-container-contains,
+  readability-container-data-pointer,
+  cppcoreguidelines-pro-type-cstyle-cast,
+  portability-avoid-pragma-once,
+  cppcoreguidelines-avoid-goto,
+  cppcoreguidelines-no-malloc,
+  cppcoreguidelines-use-enum-class,
+  cppcoreguidelines-pro-bounds-constant-array-index
+  '
+
+CheckOptions:
+  # Classes, structs, ...
+  - key: readability-identifier-naming.NamespaceCase
+    value: lower_case
+  - key: readability-identifier-naming.ClassCase
+    value: CamelCase
+  - key: readability-identifier-naming.AbstractClassCase
+    value: CamelCase
+  - key: readability-identifier-naming.TypeAliasCase
+    value: lower_case
+  - key: readability-identifier-naming.TypeAliasSuffix
+    value: _t
+  - key: readability-identifier-naming.StructCase
+    value: CamelCase
+  - key: readability-identifier-naming.EnumCase
+    value: CamelCase
+  - key: readability-identifier-naming.UnionCase
+    value: CamelCase
+  - key: readability-identifier-naming.TypedefCase
+    value: CamelCase
+
+  # Variables, member variables, ...
+  - key: readability-identifier-naming.ParameterCase
+    value: lower_case
+  - key: readability-identifier-naming.VariableCase
+    value: lower_case
+  - key: readability-identifier-naming.MemberCase
+    value: lower_case
+  - key: readability-identifier-naming.PublicMemberCase
+    value: lower_case
+  - key: readability-identifier-naming.PrivateMemberCase
+    value: lower_case
+  - key: readability-identifier-naming.PrivateMemberPrefix
+    value: m_
+  - key: readability-identifier-naming.ProtectedMemberCase
+    value: lower_case
+  - key: readability-identifier-naming.EnumConstantCase
+    value: UPPER_CASE
+  
+  # Functions, methods, ...
+  - key: readability-identifier-naming.ClassMethodCase
+    value: lower_case
+  - key: readability-identifier-naming.FunctionCase
+    value: lower_case
+
+  # Variable Lengths
+
+  - key: readability-identifier-length.MinimumVariableNameLength
+    value: '3'
+  - key: readability-identifier-length.MinimumParameterNameLength
+    value: '3'
+
+  # Type Alias
+
+  - key: readability-identifier-naming.TypeAliasCase
+    value: lower_case
+  - key: readability-identifier-naming.TypedefSuffix
+    value: _t
+
+  # Literals
+
+  - key: readability-uppercase-literal-suffix.NewSuffixes
+    value: L;U;f:UL
+

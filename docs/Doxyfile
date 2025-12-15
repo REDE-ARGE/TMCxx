@@ -1,0 +1,64 @@
+# Doxyfile - TMCxx API Documentation
+
+# Project info
+PROJECT_NAME           = "TMCxx"
+PROJECT_NUMBER         = "0.1.0"
+PROJECT_BRIEF          = "Modern C++20 Library for TMC5160 Stepper Drivers"
+PROJECT_LOGO           = 
+
+# Input
+INPUT                  = ../include
+FILE_PATTERNS          = *.hpp
+RECURSIVE              = YES
+EXCLUDE_PATTERNS       = */detail/* */vendor/*
+
+# Output
+OUTPUT_DIRECTORY       = .
+GENERATE_HTML          = YES
+GENERATE_LATEX         = NO
+HTML_OUTPUT            = html
+HTML_EXTRA_STYLESHEET  = 
+
+# Extraction
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = NO
+EXTRACT_STATIC         = YES
+EXTRACT_LOCAL_CLASSES  = NO
+
+# C++ specific
+EXTENSION_MAPPING      = hpp=C++
+BUILTIN_STL_SUPPORT    = YES
+CPP_CLI_SUPPORT        = NO
+
+# Diagrams (optional - requires Graphviz)
+HAVE_DOT               = NO
+CLASS_DIAGRAMS         = YES
+
+# Formatting
+BRIEF_MEMBER_DESC      = YES
+REPEAT_BRIEF           = YES
+ALWAYS_DETAILED_SEC    = NO
+INLINE_INHERITED_MEMB  = NO
+FULL_PATH_NAMES        = NO
+SHORT_NAMES            = NO
+JAVADOC_AUTOBRIEF      = YES
+MULTILINE_CPP_IS_BRIEF = NO
+TAB_SIZE               = 4
+MARKDOWN_SUPPORT       = YES
+AUTOLINK_SUPPORT       = YES
+
+# Warnings
+WARN_IF_UNDOCUMENTED   = YES
+WARN_IF_DOC_ERROR      = YES
+WARN_NO_PARAMDOC       = NO
+
+# Source browsing
+SOURCE_BROWSER         = YES
+INLINE_SOURCES         = NO
+STRIP_CODE_COMMENTS    = YES
+REFERENCED_BY_RELATION = YES
+REFERENCES_RELATION    = YES
+
+# Index
+ALPHABETICAL_INDEX     = YES
+GENERATE_TREEVIEW      = YES

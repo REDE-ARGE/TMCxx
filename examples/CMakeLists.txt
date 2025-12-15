@@ -1,0 +1,8 @@
+add_executable(example_01_rotation 01_simple_rotation.cpp)
+target_link_libraries(example_01_rotation PRIVATE TMCxx)
+
+add_executable(example_02_position 02_position_control.cpp)
+target_link_libraries(example_02_position PRIVATE TMCxx)
+
+add_executable(example_03_builder 03_builder_usage.cpp)
+target_link_libraries(example_03_builder PRIVATE TMCxx)
